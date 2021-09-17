@@ -1,0 +1,123 @@
+﻿@model IEnumerable<AppPostgress_V2.Models.contralaborales>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <input type="search" id="txtSearch" />
+    <button type="button" class="btn btn-light" onclick="(SearchData())">Buscar</button>
+</div>
+<hr />
+<div class="row">
+    <label class="col-2">No Contrato: </label>
+    <div class="col-10" id="NoContrato"></div>
+</div>
+<div class="row">
+    <label class="col-2">Numero documento: </label>
+    <div class="col-10" id="NumDocumento"></div>
+</div>
+<div class="row">
+    <label class="col-2">Nombre completo: </label>
+    <div class="col-10" id="PNombre"></div>
+</div>
+<div class="row">
+    <label class="col-2">Salario: </label>
+    <div class="col-10" id="Salario"></div>
+</div>
+<div class="row">
+    <label class="col-2">Fecha inicio: </label>
+    <div class="col-10" id="FechaIni"></div>
+</div>
+<div class="row">
+    <label class="col-2">Fecha fin: </label>
+    <div class="col-10" id="FechaFin"></div>
+</div>
+<hr />
+<div class="row">
+    <label class="col-2">Periodo laborado: </label>
+    <input type="text" id="pLaborado"/>
+</div>
+<br />
+<div class="row">
+    <label class="col-2">Hora total laborada: </label>
+    <input type="text" id="tLaborada" />
+</div>
+<br />
+<div class="row">
+    <label class="col-2">Hora extra: </label>
+    <input type="text" id="horaX" />
+</div>
+<br />
+<div class="row">
+    <label class="col-2">descuento nomina: </label>
+    <input type="text" id="dnomina" />
+</div>
+<div>
+    <button type="button" class="btn btn-primary" onclick="(Save())">Guardar</button>
+</div>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+     function SearchData() {
+         var parameter = { numerodocumento: $("#txtSearch").val() };
+         console.log(parameter);
+        $.ajax({
+            type: "GET",
+            url: "/Home/Search",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: parameter,
+            success: function (chData) {
+                if (chData.length > 0) {
+                    $("#NumDocumento").html(chData[0].numerodocumento);
+                    $("#PNombre").html(chData[0].primernombre + ' ' + chData[0].segundonombre + ' ' + chData[0].primernombre + ' ' + chData[0].segundoapellido);
+                    $("#Salario").html(chData[0].salario);
+                    $("#FechaIni").html(chData[0].fechainicio);
+                    $("#FechaFin").html(chData[0].fechafin);
+                    $("#NoContrato").html(chData[0].idcontrato);
+                    
+                }
+                else
+                {
+                    alert("No se encontro informacion con el numero de documento");
+                    $("#txtSearch").val('');
+                }
+            }
+        });
+    }
+
+    function Save()
+    {
+        var contrato = $('#NoContrato').text();
+        var periodo = $("#pLaborado").val();
+        var TotalLaborada = $("#tLaborada").val();
+        var HoraExtra = $("#horaX").val();
+        var desNomina = $("#dnomina").val();
+        var parameter = {
+            contrato: contrato.value,
+            per: periodo,
+            totallaborado: TotalLaborada,
+            horaEx: HoraExtra,
+            desNomina: desNomina
+        }
+        $.ajax({
+            type: "GET",
+            url: "/Home/Save",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: parameter,
+            success: function (chData) {
+                if (chData === true) {
+                    alert("se guardo correctamente");
+                }
+                else {
+                    alert("Se produjo un error al guardar");
+                }
+               
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppPostgress_V2", "AppPostgress_V2\AppPostgress_V2.csproj", "{D25AA5C0-9D6B-4DB0-BFD6-3E0CAA4089CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D25AA5C0-9D6B-4DB0-BFD6-3E0CAA4089CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25AA5C0-9D6B-4DB0-BFD6-3E0CAA4089CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D25AA5C0-9D6B-4DB0-BFD6-3E0CAA4089CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25AA5C0-9D6B-4DB0-BFD6-3E0CAA4089CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {559AEFA6-2B80-4F0C-A326-EAEAF9B8AE66}
+	EndGlobalSection
+EndGlobal
